@@ -12,7 +12,7 @@ import { AuthRoutingModule } from './auth-routing.module';
       strategies: [
         NbPasswordAuthStrategy.setup({
           name: 'email',
-          baseEndpoint: 'http://example.com/app-api/v1',
+          baseEndpoint: 'http://localhost:3000/api/v1',
           login: {
             endpoint: '/auth/sign-in',
             method: 'post'
@@ -25,17 +25,37 @@ import { AuthRoutingModule } from './auth-routing.module';
             endpoint: '/auth/sign-out',
             method: 'post'
           },
-          requestPass: {
-            endpoint: '/auth/request-pass',
-            method: 'post'
-          },
-          resetPass: {
-            endpoint: '/auth/reset-pass',
-            method: 'post'
-          }
+          // requestPass: {
+          //   endpoint: '/auth/request-pass',
+          //   method: 'post'
+          // },
+          // resetPass: {
+          //   endpoint: '/auth/reset-pass',
+          //   method: 'post'
+          // }
         })
       ],
-      forms: {}
+      forms: {
+        login: {
+      redirectDelay: 500, // delay before redirect after a successful login, while success message is shown to the user
+      strategy: 'email',  // strategy id key.
+      rememberMe: false,   // whether to show or not the `rememberMe` checkbox
+      showMessages: {     // show/not show success/error messages
+        success: true,
+        error: true,
+      },
+      requestPassword: false
+    },
+    register: {
+      redirectDelay: 500,
+      strategy: 'email',
+      showMessages: {
+        success: true,
+        error: true,
+      },
+      terms: false,
+    },
+      }
     })
   ]
 })
