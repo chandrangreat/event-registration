@@ -1,2 +1,2 @@
-require('./events.js');
-require('./users.js');
+require('./event.js');
+require('./user.js');

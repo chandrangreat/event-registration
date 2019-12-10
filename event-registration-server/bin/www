@@ -1,6 +1,12 @@
 const app = require('../app')();
 const {port} = require('../config');
+const db = require('../db/db.js');
 
-app.listen(port, () => {
-  console.log('Express App listening on port:', port);
+db.once('open', () => { 
+    console.log('Connected to MongoDB');
+    app.listen(port, () => {
+    console.log('Express App listening on port:', port);
+  });
 });
+
+
